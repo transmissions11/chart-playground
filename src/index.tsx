@@ -1,17 +1,51 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as Plot from "@observablehq/plot";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const AXIS_CONFIG = { x: "x", y: "y" };
+
+let marks = [Plot.frame()];
+
+marks.push(
+  Plot.line(
+    Array.from({ length: 10000 }, (_, x) => {
+      return {
+        x,
+        y: x * Math.random()
+      };
+    }),
+
+    { ...AXIS_CONFIG, stroke: "green" }
+  )
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+marks.push(
+  Plot.line(
+    Array.from({ length: 10000 }, (_, x) => {
+      return {
+        x,
+        y: x * -Math.random()
+      };
+    }),
+
+    { ...AXIS_CONFIG, stroke: "red" }
+  )
+);
+
+const plot = Plot.plot({
+  width: 810,
+  height: 510,
+
+  y: {
+    label: null,
+    grid: true
+  },
+
+  x: {
+    label: null,
+    grid: true
+  },
+
+  marks
+});
+
+document.body.appendChild(plot);
