@@ -7,7 +7,7 @@ Playground for charting with observablehq's plot lib.
 ## Getting Started
 
 ```sh
-git clone https://github.com/TransmissionsDev/chart-playground.git
+git clone https://github.com/transmissions11/chart-playground.git
 npm install
 npm run start
 ```
